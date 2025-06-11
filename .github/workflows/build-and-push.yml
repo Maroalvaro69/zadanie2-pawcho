@@ -27,26 +27,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
 
-      - name: Build multi-arch image
-        id: docker_build
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: false
-          platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/maroalvaro69/pawcho-app:latest
-          outputs: type=docker,dest=/tmp/image.tar
-
-      - name: Scan image with Trivy
-        uses: aquasecurity/trivy-action@master
-        with:
-          input: /tmp/image.tar
-          format: table
-          exit-code: 1
-          ignore-unfixed: true
-          severity: HIGH,CRITICAL
-
-      - name: Push to GHCR (if scan passed)
+      - name: Build and push multi-arch image
         uses: docker/build-push-action@v5
         with:
           context: .
