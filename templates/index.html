@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pogoda</title>
+</head>
+<body>
+    <h1>Sprawdź pogodę</h1>
+    <form method="post">
+        <label>Kraj:</label>
+        <select name="country">
+            <option value="Polska">Polska</option>
+            <option value="Niemcy">Niemcy</option>
+        </select>
+        <br>
+        <label>Miasto:</label>
+        <select name="city">
+            <option value="Warszawa">Warszawa</option>
+            <option value="Berlin">Berlin</option>
+        </select>
+        <br>
+        <button type="submit">Sprawdź</button>
+    </form>
+    {% if weather %}
+    <h2>Wynik:</h2>
+    <p>{{ weather }}</p>
+    {% endif %}
+    <p>Autor: Marek Górnicki</p>
+</body>
+</html>
